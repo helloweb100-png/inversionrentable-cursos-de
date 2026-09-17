@@ -13,9 +13,9 @@
   <meta property="og:description" content="Aprende trading y operatividad bursatil con Inversion-Rentable en CDMX. Cursos en linea, presenciales y webinars para principiantes y traders avanzados.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
-  <meta property="og:image" content="logo.jpg">
-  <link rel="icon" type="image/png" href="logo.jpg">
-  <link rel="apple-touch-icon" href="logo.jpg">
+  <meta property="og:image" content="og-image.jpg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
   <script>document.documentElement.classList.add("js","is-loading");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap">
 <style>
@@ -60,7 +60,7 @@
   --red-2: #c0a148;
   --red-dark: #46360b;
   --sage: #8e513e;
-  --gold: #536520;
+  --gold: #a9822f;
   --whatsapp: #25d366;
   --whatsapp-dark: #128c7e;
 
@@ -107,6 +107,7 @@
 .loader,
 .lightbox,
 .has-bg,
+.webinar-promo,
 .parallax-banner {
   --ink: var(--photo-ink);
   --panel: var(--photo-panel);
@@ -281,8 +282,8 @@ body.is-ready [data-hero] {
 
 .rise-word-inner {
   display: inline-block;
-  transform: translate3d(0, 112%, 0);
-  transition: transform 0.9s var(--ease-out) var(--wd, 0ms);
+  transform: translate3d(0, 112%, 0) scale(0.92);
+  transition: transform 0.95s var(--ease-out) var(--wd, 0ms);
   will-change: transform;
 }
 
@@ -294,6 +295,9 @@ body.is-ready [data-hero] {
 .gradient-text,
 .text-gold {
   background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .gradient-text {
@@ -302,26 +306,34 @@ body.is-ready [data-hero] {
     linear-gradient(180deg, #ffffff 6%, var(--photo-paper) 52%, #bfb5a9 100%);
   background-size: 300% 100%, 100% 100%;
   background-position: 220% 0, 0 0;
+  color: var(--photo-paper);
 }
 
 .text-gold {
   background-image:
     linear-gradient(112deg, transparent 32%, rgba(255, 250, 230, 0.9) 47%, transparent 62%),
-    linear-gradient(112deg, var(--photo-paper) 10%, var(--gold) 70%,
-      color-mix(in srgb, var(--gold) 58%, white) 100%);
+    linear-gradient(112deg, var(--gold) 4%, var(--red-2) 55%,
+      color-mix(in srgb, var(--red-2) 55%, white) 100%);
   background-size: 300% 100%, 100% 100%;
   background-position: 220% 0, 0 0;
+  color: var(--gold);
 }
 
 .gradient-text.is-lit,
 .text-gold.is-lit {
-  animation: textSheen 1.3s var(--ease-out) forwards;
+  animation: textSheen 1.3s var(--ease-out) forwards, textSheenLoop 6.5s ease-in-out 2.6s infinite;
 }
 
 @keyframes textSheen {
   to {
     background-position: -70% 0, 0 0;
   }
+}
+
+@keyframes textSheenLoop {
+  0%, 82% { background-position: -70% 0, 0 0; }
+  92% { background-position: 40% 0, 0 0; }
+  100% { background-position: -70% 0, 0 0; }
 }
 
 /* ---------- Eyebrow: la rayita se dibuja junto con el texto ---------- */
@@ -1002,7 +1014,7 @@ body.is-ready .hero-bg {
   margin: 0 auto;
   max-width: 20ch;
   font-family: var(--hw-display);
-  font-size: clamp(3.1rem, 6.6vw, 5.6rem);
+  font-size: clamp(3.6rem, 7.8vw, 7.2rem);
   font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.012em;
@@ -1029,23 +1041,6 @@ body.is-ready .hero-title .line-inner {
 .js .hero-title .line[data-hero] {
   opacity: 1;
   transform: none;
-}
-
-.gradient-text,
-.text-gold {
-  background: linear-gradient(180deg, #ffffff 6%, var(--photo-paper) 52%, #bfb5a9 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: var(--photo-paper);
-}
-
-.text-gold {
-  background: linear-gradient(112deg, var(--photo-paper) 10%, var(--gold) 70%,
-      color-mix(in srgb, var(--gold) 58%, white) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .hero-typewriter {
@@ -1205,6 +1200,149 @@ body.is-ready .hero-title .line-inner {
 }
 
 /* =========================================================
+   WEBINAR PROMO (evento gratuito)
+   ========================================================= */
+.webinar-promo {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(70px, 8vw, 112px) 0;
+  background: linear-gradient(180deg, #0a0a0c, #050506 55%, #0a0a0c);
+}
+
+.webinar-promo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 55% at 82% 20%, color-mix(in srgb, var(--red) 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 50% at 8% 90%, color-mix(in srgb, var(--red) 10%, transparent), transparent 72%);
+}
+
+.webinar-promo-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(36px, 5vw, 76px);
+  align-items: center;
+}
+
+.webinar-promo-tag {
+  margin-bottom: 20px;
+}
+
+.webinar-promo-desc {
+  max-width: 58ch;
+  margin: 18px 0 0;
+  color: var(--paper-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.webinar-promo-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.webinar-promo-note {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.webinar-promo-card {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: clamp(38px, 4.4vw, 58px) clamp(26px, 3vw, 42px);
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+  text-align: center;
+  background: linear-gradient(160deg, rgba(20, 16, 8, 0.92), rgba(10, 9, 6, 0.94));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 0 rgba(192, 161, 72, 0);
+  animation: promoCardGlow 4.5s ease-in-out infinite;
+}
+
+@keyframes promoCardGlow {
+  0%, 100% { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 0 rgba(192, 161, 72, 0); }
+  50% { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 46px color-mix(in srgb, var(--red-2) 45%, transparent); }
+}
+
+.webinar-promo-card-eyebrow {
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.webinar-promo-card-day {
+  font-family: var(--hw-display);
+  font-size: clamp(4.4rem, 8.6vw, 6.6rem);
+  font-weight: 700;
+  line-height: 0.9;
+  background: linear-gradient(112deg, var(--photo-paper) 10%, var(--red-2) 60%,
+      color-mix(in srgb, var(--red-2) 55%, white) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.webinar-promo-card-month {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.webinar-promo-card-year {
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+}
+
+.webinar-promo-card-foot {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-2);
+  width: 100%;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 780px) {
+  .webinar-promo-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .webinar-promo-desc {
+    margin-inline: auto;
+  }
+
+  .webinar-promo-cta {
+    justify-content: center;
+  }
+
+  .webinar-promo-card {
+    max-width: 340px;
+  }
+}
+
+/* =========================================================
    SECTION SHELL
    ========================================================= */
 section {
@@ -1315,7 +1453,7 @@ main section[id] {
 
 .section-title {
   font-family: var(--hw-display);
-  font-size: clamp(2.3rem, 4.4vw, 3.9rem);
+  font-size: clamp(2.7rem, 5.2vw, 4.8rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.01em;
@@ -1452,7 +1590,7 @@ main section[id] {
 
 .service-title {
   font-family: var(--hw-display);
-  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  font-size: clamp(2.3rem, 4.2vw, 3.8rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.01em;
@@ -1579,7 +1717,7 @@ main section[id] {
 
 .parallax-content h2 {
   font-family: var(--hw-display);
-  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-size: clamp(3rem, 7vw, 6.2rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.012em;
@@ -1689,7 +1827,7 @@ main section[id] {
 }
 
 .timeline-card h3 {
-  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
   font-weight: 700;
   color: var(--paper);
   letter-spacing: -0.005em;
@@ -2646,7 +2784,7 @@ main section[id] {
 
   .parallax-content h2 {
     max-width: 16ch;
-    font-size: clamp(2rem, 9.5vw, 3rem);
+    font-size: clamp(2.2rem, 10vw, 3.4rem);
   }
 
   .parallax-banner--alt .parallax-content {
@@ -2715,7 +2853,7 @@ main section[id] {
   }
 
   .hero-title {
-    font-size: clamp(2.6rem, 12.5vw, 3.6rem);
+    font-size: clamp(2.8rem, 13vw, 4.1rem);
     max-width: none;
   }
 
@@ -3138,7 +3276,7 @@ main section[id] {
 }
 
 /* --- sobre fotografia: texto y acento claros --- */
-.hero,.site-header,.loader,.lightbox,.has-bg,.parallax-banner{color:var(--photo-text);--red:#c9a02b;--red-2:#d7c48d;--red-dark:#957517;--sage:#c58d7c;--gold:#b7d06c;}
+.hero,.site-header,.loader,.lightbox,.has-bg,.webinar-promo,.parallax-banner{color:var(--photo-text);--red:#c9a02b;--red-2:#d7c48d;--red-dark:#957517;--sage:#c58d7c;--gold:#e3c988;}
 
 /* --- tercera tipografia: etiquetas y rotulos --- */
 :where(.eyebrow,.tag,.contact-label,.hero-social-label,.hero-typewriter-label,.brand-tagline,.nav-link,.footer-col h4,.footer-bottom-tag,.loader-tagline){font-family:var(--hw-acento)}
@@ -3153,11 +3291,25 @@ main section[id] {
 </style>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="brandMarkGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#46360b"/>
+        <stop offset="55%" stop-color="#7d641b"/>
+        <stop offset="100%" stop-color="#d6b660"/>
+      </linearGradient>
+      <symbol id="brand-mark-icon" viewBox="0 0 132 104">
+        <polyline points="20,94 42,66 58,80 78,44 94,58 112,22" fill="none" stroke="url(#brandMarkGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <polygon points="117.9,10.19 121.84,26.92 102.16,17.08" fill="url(#brandMarkGrad)"/>
+        <polygon points="30,43 32.83,51.17 41,54 32.83,56.83 30,65 27.17,56.83 19,54 27.17,51.17" fill="url(#brandMarkGrad)"/>
+      </symbol>
+    </defs>
+  </svg>
   <div id="loading-screen" class="loader" aria-hidden="true">
     <div class="loader-texture" aria-hidden="true"></div>
     <div class="loader-inner">
       <div class="loader-mark">
-        <img src="logo.jpg" alt="" class="loader-logo">
+        <svg class="loader-logo" viewBox="0 0 132 104" role="img" aria-label="INVERSION-RENTABLE"><use href="#brand-mark-icon"/></svg>
       </div>
       <div class="loader-rings" aria-hidden="true">
         <span></span><span></span><span></span>
@@ -3173,7 +3325,7 @@ main section[id] {
 <header class="site-header" id="site-header">
     <div class="container header-inner">
       <a href="#inicio" class="brand" aria-label="INVERSION-RENTABLE">
-        <span class="brand-mark"><img src="logo.jpg" alt="INVERSION-RENTABLE" class="brand-logo"></span>
+        <span class="brand-mark"><svg class="brand-logo" viewBox="0 0 132 104" role="img" aria-label="INVERSION-RENTABLE"><use href="#brand-mark-icon"/></svg></span>
         <span class="brand-text">
           <span class="brand-name">INVERSION-RENTABLE</span>
           <span class="brand-tagline">Capacitacion financiera que genera resultados</span>
@@ -3249,6 +3401,29 @@ main section[id] {
         </div>
       </div>
       <a href="#servicios" class="scroll-indicator" aria-label="Desplazate hacia abajo"><span class="scroll-line"></span></a>
+    </section>
+<section class="webinar-promo" id="webinar">
+      <div class="container webinar-promo-inner">
+        <div class="webinar-promo-body">
+          <span class="tag webinar-promo-tag" data-reveal>Cupo limitado &middot; Evento en vivo</span>
+          <h2 class="promo-title" data-reveal>Capacitacion y Entrenamiento <span class="text-gold">totalmente gratis</span></h2>
+          <p class="webinar-promo-desc" data-reveal>Si quieres lograr resultados de exito en el trading debes recibir informacion de primer nivel. Te ofrecemos un entrenamiento con los mejores traders, con experiencia real y los mejores consejos para que llegues mas rapido al exito en los mercados financieros.</p>
+          <div class="webinar-promo-cta" data-reveal>
+            <button type="button" class="btn btn-primary btn-lg" data-wa-trigger>
+              <svg viewBox="0 0 24 24" class="btn-icon" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.8a8.1 8.1 0 0 1 5.75 2.38 8.07 8.07 0 0 1 2.38 5.73c0 4.48-3.65 8.12-8.14 8.12a8.1 8.1 0 0 1-4.13-1.13l-.3-.17-3.12.82.83-3.04-.19-.31a8.06 8.06 0 0 1-1.24-4.31c0-4.48 3.65-8.09 8.16-8.09m-4.48 4.19c-.15 0-.4.06-.6.28-.21.23-.8.77-.8 1.89s.82 2.2.93 2.35c.11.15 1.6 2.5 3.95 3.44 1.94.79 2.35.63 2.77.6.42-.04 1.36-.55 1.55-1.09.19-.53.19-.99.13-1.09-.06-.09-.21-.15-.44-.26-.23-.12-1.36-.67-1.57-.75-.21-.08-.36-.12-.52.11-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.96-.35-1.83-1.13-.68-.6-1.13-1.35-1.27-1.58-.13-.23-.01-.35.1-.47.11-.11.23-.27.35-.4.11-.14.15-.24.23-.4.08-.15.04-.3-.02-.42-.06-.11-.52-1.28-.72-1.74-.19-.46-.38-.4-.52-.4Z"/></svg>
+              <span>Pide tu acceso</span>
+            </button>
+            <span class="webinar-promo-note">Cupo limitado, sin costo</span>
+          </div>
+        </div>
+        <div class="webinar-promo-card" data-reveal="media">
+          <span class="webinar-promo-card-eyebrow">Fecha del evento</span>
+          <span class="webinar-promo-card-day">23</span>
+          <span class="webinar-promo-card-month">Septiembre</span>
+          <span class="webinar-promo-card-year">2026</span>
+          <span class="webinar-promo-card-foot">Entrenamiento en vivo &middot; Cupo limitado</span>
+        </div>
+      </div>
     </section>
 <section class="services" id="servicios">
       <div class="container">
@@ -3545,7 +3720,7 @@ main section[id] {
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="#inicio" class="brand">
-          <span class="brand-mark"><img src="logo.jpg" alt="INVERSION-RENTABLE" class="brand-logo"></span>
+          <span class="brand-mark"><svg class="brand-logo" viewBox="0 0 132 104" role="img" aria-label="INVERSION-RENTABLE"><use href="#brand-mark-icon"/></svg></span>
           <span class="brand-text"><span class="brand-name">INVERSION-RENTABLE</span><span class="brand-tagline">Capacitacion financiera que genera resultados</span></span>
         </a>
         <p>Inversion-Rentable, concepto Prosperity. Cursos y capacitacion en operatividad financiera y bursatil para quienes buscan tomar decisiones con criterio en los mercados.</p>
@@ -3890,7 +4065,7 @@ document.addEventListener("keydown", (event) => {
 /* =========================================================
    TITULOS: palabras en cascada + barrido de luz en oro/degradado
    ========================================================= */
-const riseTargets = document.querySelectorAll(".section-title, .parallax-content h2");
+const riseTargets = document.querySelectorAll(".section-title, .parallax-content h2, .service-title, .timeline-card h3, .promo-title");
 
 const wrapRiseWords = (el) => {
   [...el.childNodes].forEach((node) => {
